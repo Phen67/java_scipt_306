@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">Please Select Vehicle</label>
+    <select id="">
+       <option value="car">Car</option>
+        <option value="moto">Moto</option>
+    </select>
+    <br>
+    <br>
+    <label for="">Please Enter Time in:</label>
+    <input type="time"  id="time_in"><br>
+    <Label>Please Enter Time Out:</Label>
+    <input type="time"  id="time_out"><br>
+    <button>Caculate</button><br>
+    <label for="">ថ្លៃផ្ញើរ រៀល</label>
+    <input type="text"  id="total_riel" readonly><br>
+    <label for="">ថ្លៃផ្ញើរ ដុល្លា</label>
+    <input type="text"  id="total_dollar" readonly>
+
+     <script>
+        function calculate() {
+            var timeIn = document.getElementById('time_in').value;
+            var timeOut = document.getElementById('time_out').value;
+            var vehicle = document.querySelector('select').value;
+
+            var inMinutes = convertToMinutes(timeIn);
+            var outMinutes = convertToMinutes(timeOut);
+
+            var duration = outMinutes - inMinutes;
+
+            var costPerMinute = vehicle === 'car' ? 0.5 : 0.3; 
+            var totalCost = duration * costPerMinute;
+
+         
+            document.getElementById('total_riel').value = totalCost * 4000; 
+            document.getElementById('total_dollar').value = totalCost.toFixed(2);
+            let totalCostInDollar = totalCost.toFixed(2);
+            let totalCostInRiel = totalCost * 4000;
+            console.log('Total Cost in Dollar: $' + totalCostInDollar);
+            console.log('Total Cost in Riel: ' + totalCostInRiel);
+        }
+        if (document.querySelector('button')) {
+            document.querySelector('button').addEventListener('click', calculate);
+        }
+    
+    </script>
+</body>
+</html>
